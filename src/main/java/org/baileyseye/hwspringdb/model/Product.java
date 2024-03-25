@@ -1,8 +1,6 @@
-package org.baileyseye.hwspringdb;
+package org.baileyseye.hwspringdb.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -16,7 +14,8 @@ import javax.persistence.*;
 @EqualsAndHashCode(of = "productId")
 @DynamicUpdate
 @DynamicInsert
-
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
 
     @Id
@@ -29,18 +28,5 @@ public class Product {
 
     @Column(name="product_price")
     private double productPrice;
-
-
-
-
-    public Product(){
-        super();
-    }
-
-    public Product(String productName, double productPrice) {
-        super();
-        this.productName = productName;
-        this.productPrice = productPrice;
-    }
 
 }
