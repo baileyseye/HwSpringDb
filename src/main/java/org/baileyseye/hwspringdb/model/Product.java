@@ -1,5 +1,6 @@
 package org.baileyseye.hwspringdb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +21,7 @@ public class Product {
     private String productName;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JsonIgnore
     @JoinColumn(name = "categories", nullable = false)
     private Category categories;
 

@@ -7,11 +7,13 @@ import org.baileyseye.hwspringdb.service.CategoryService;
 import org.baileyseye.hwspringdb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 @RestController
+@RequestMapping("/products")
 public class ProductController {
 
     private final ProductService productService;
@@ -35,4 +37,29 @@ public class ProductController {
         Product savedProduct = productService.addProduct(product);
         return ResponseEntity.ok(savedProduct);
     }
+
+    @GetMapping("/underPriceLimit")
+    public ResponseEntity<List<Product>> getProductsUnderPriceLimit() {
+        BigDecimal priceLimit = new BigDecimal("200.00");
+        List<Product> products = productService.getProductsUnderPrice(priceLimit);
+        System.out.println("Products retrieved: " + products.size());
+        return ResponseEntity.ok(products);
+    }
+
+    @GetMapping("/random")
+    public ResponseEntity<Product> getRandomProduct() {
+        Product randomProduct = productService.getOneRandomProduct();
+        if (randomProduct != null) {
+            return ResponseEntity.ok(randomProduct);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/randomBatch")
+    public ResponseEntity<List<Product>> getRandomProductsBatch() {
+        List<Product> randomProducts = productService.getRandomProductsBatch();
+        return ResponseEntity.ok(randomProducts);
+    }
+
 }
