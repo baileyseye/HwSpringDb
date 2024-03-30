@@ -1,4 +1,4 @@
-package org.baileyseye.hwspringdb.controller;
+package org.baileyseye.hwspringdb.controller.rest;
 
 import org.baileyseye.hwspringdb.DTO.AuthorDTO;
 import org.baileyseye.hwspringdb.model.Author;
@@ -14,7 +14,7 @@ import java.util.Optional;
 
 
 @RestController
-public class AuthorController {
+public class    AuthorController {
     private final AuthorService authorService;
     private final CategoryService categoryService;
 

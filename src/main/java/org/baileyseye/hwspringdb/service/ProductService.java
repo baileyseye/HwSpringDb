@@ -76,4 +76,9 @@ public class ProductService {
         return productRepository.findById(randomId).orElse(null);
     }
 
+
+    public List<Product> findAll() {
+        return productRepository.findAll();
+    }
+
 }

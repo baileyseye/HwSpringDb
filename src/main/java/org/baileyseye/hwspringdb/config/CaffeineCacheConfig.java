@@ -34,8 +34,6 @@ public class CaffeineCacheConfig {
         Cache cache = caffeineCacheManager.getCache("productsCache");
         assert cache != null;
         CacheStats stats = ((CaffeineCache) cache).getNativeCache().stats();
-        saveStatToFile(stats);
-
         return caffeineCacheManager;
     }
 
@@ -43,28 +41,8 @@ public class CaffeineCacheConfig {
     public Caffeine<Object, Object> caffeineCacheBuilder() {
         return Caffeine.newBuilder()
                 .initialCapacity(100)
-                .maximumSize(1000)
+                .maximumSize(10000000)
                 .expireAfterAccess(1, TimeUnit.MINUTES)
                 .recordStats();
     }
-
-    private void saveStatToFile(CacheStats stats) {
-        List<String> statsList = Arrays.asList(
-                "Hit rate: " + stats.hitRate(),
-                "Miss rate: " + stats.missRate(),
-                "Average load penalty: " + stats.averageLoadPenalty(),
-                "Eviction count: " + stats.evictionCount()
-        );
-
-        try {
-            String filePath = "src/main/resources/statistic/stat.txt";
-            Files.write(Paths.get(filePath), new ArrayList<>(statsList),
-                    StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-        } catch (IOException ioException) {
-            String errorMessage = "Произошла ошибка при записи данных в файл stat.txt: " +
-                    ioException.getMessage();
-            throw new RuntimeException(errorMessage, ioException);
-        }
-    }
-
 }

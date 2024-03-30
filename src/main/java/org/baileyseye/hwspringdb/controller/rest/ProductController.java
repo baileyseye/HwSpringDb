@@ -1,4 +1,4 @@
-package org.baileyseye.hwspringdb.controller;
+package org.baileyseye.hwspringdb.controller.rest;
 
 import org.baileyseye.hwspringdb.DTO.ProductDTO;
 import org.baileyseye.hwspringdb.model.Category;
@@ -25,7 +25,7 @@ public class ProductController {
         this.categoryService = categoryService;
     }
 
-    @PostMapping("/products")
+    @PostMapping
     public ResponseEntity<Product> addProduct(@RequestBody ProductDTO productDTO) {
         Product product = new Product();
         product.setProductName(productDTO.getProductName());
@@ -38,11 +38,9 @@ public class ProductController {
         return ResponseEntity.ok(savedProduct);
     }
 
-    @GetMapping("/underPriceLimit")
-    public ResponseEntity<List<Product>> getProductsUnderPriceLimit() {
-        BigDecimal priceLimit = new BigDecimal("200.00");
+    @GetMapping(params = "priceLimit")
+    public ResponseEntity<List<Product>> getProductsUnderPriceLimit(@RequestParam BigDecimal priceLimit) {
         List<Product> products = productService.getProductsUnderPrice(priceLimit);
-        System.out.println("Products retrieved: " + products.size());
         return ResponseEntity.ok(products);
     }
 
@@ -61,5 +59,4 @@ public class ProductController {
         List<Product> randomProducts = productService.getRandomProductsBatch();
         return ResponseEntity.ok(randomProducts);
     }
-
 }

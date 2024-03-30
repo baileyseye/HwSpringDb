@@ -1,4 +1,4 @@
-package org.baileyseye.hwspringdb.controller;
+package org.baileyseye.hwspringdb.controller.rest;
 
 import org.baileyseye.hwspringdb.service.ProductBulkService;
 import org.springframework.beans.factory.annotation.Autowired;
