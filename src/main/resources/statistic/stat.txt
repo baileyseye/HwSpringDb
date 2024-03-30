@@ -1,0 +1,9 @@
+Hit rate: 1.0
+Miss rate: 0.0
+Average load penalty: 0.0
+Eviction count: 0
+Hit rate: 1.0
+Miss rate: 0.0
+Average load penalty: 0.0
+Eviction count: 0
+Transaction time (ms): 0
