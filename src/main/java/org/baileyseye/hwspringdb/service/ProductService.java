@@ -48,7 +48,6 @@ public class ProductService {
         return products.get(randomIndex);
     }
 
-    @Cacheable(value = "randomProductsCache")
     public List<Product> getRandomProductsBatch() {
         List<Product> randomProducts = new ArrayList<>();
         int targetCount = 15000;
