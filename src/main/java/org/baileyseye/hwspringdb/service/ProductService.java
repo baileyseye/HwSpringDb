@@ -34,8 +34,7 @@ public class ProductService {
         return productRepository.findByProductPriceLessThan(priceLimit);
     }
 
-    @Cacheable(value = "randomProductCache",
-            unless = "#result == null or T(java.util.Collections).emptyList().equals(#result)")
+
     public Product getOneRandomProduct() {
         List<Product> products = productRepository.findAll();
         int totalProducts = products.size();
