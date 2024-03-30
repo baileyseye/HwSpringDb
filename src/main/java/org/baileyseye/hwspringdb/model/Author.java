@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
@@ -22,6 +25,9 @@ public class Author {
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
+
+    @ManyToMany(mappedBy = "authors")
+    private Set<Product> products = new LinkedHashSet<>();
 
     public Author() {
     }

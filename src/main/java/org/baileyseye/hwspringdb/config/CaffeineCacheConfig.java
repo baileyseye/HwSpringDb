@@ -1,3 +1,4 @@
+
 package org.baileyseye.hwspringdb.config;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
@@ -8,13 +9,7 @@ import org.springframework.cache.caffeine.CaffeineCache;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.cache.caffeine.CaffeineCacheManager;

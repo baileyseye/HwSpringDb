@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -27,5 +29,11 @@ public class Product {
 
     @Column(name = "product_price", precision = 18, scale = 2)
     private BigDecimal productPrice;
+
+    @ManyToMany
+    @JoinTable(name = "author_product_id",
+            joinColumns = @JoinColumn(name = "author_product_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_name_id"))
+    private Set<Author> authors = new LinkedHashSet<>();
 
 }
